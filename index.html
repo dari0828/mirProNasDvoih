@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>между строк</title>
+<meta name="description" content="Для одного человека.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Inter:wght@300;400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- Фоновая музыка -->
+<audio id="bg-music" src="audio/melody.mp3" loop preload="auto"></audio>
+
+<!-- ================= ЭКРАН 1: ЗАСТАВКА ================= -->
+<section class="gate" id="gate">
+  <div class="gate-inner">
+    <p class="gate-line" data-delay="1">Для одного человека</p>
+    <p class="gate-line" data-delay="3">Который стал для меня слишком важным</p>
+    <button class="gate-btn" id="gate-open" data-delay="5">
+      <span>о</span><span>т</span><span>к</span><span>р</span><span>ы</span><span>т</span><span>ь</span>
+    </button>
+  </div>
+</section>
+
+<!-- ================= ЭКРАН 2: ГЛАВНАЯ ================= -->
+<main class="home" id="home" hidden>
+  <div class="home-inner">
+    <h1 class="home-title">
+      <span>между</span>
+      <span class="accent">строк</span>
+    </h1>
+
+    <nav class="home-nav">
+      <a href="pages/ty.html">ты</a>
+      <span class="dot">·</span>
+      <a href="pages/my.html">мы</a>
+      <span class="dot">·</span>
+      <a href="pages/vospominaniya.html">воспоминания</a>
+      <span class="dot">·</span>
+      <a href="pages/pismo.html">письмо</a>
+    </nav>
+  </div>
+
+  <!-- Пасхалка ✦ -->
+  <button class="easter egg-1" id="egg-main" aria-label="secret">✦</button>
+</main>
+
+<!-- ================= СЕКРЕТНЫЙ ЭКРАН ✦ ================= -->
+<div class="secret-overlay" id="secret" hidden>
+  <div class="secret-inner">
+    <p>Ты действительно всё нашла.</p>
+    <p>Значит, теперь тебе полагается ещё одна вещь.</p>
+    <p class="secret-big">Я люблю тебя.</p>
+    <p>Вот и весь секрет.</p>
+    <button class="secret-back" id="secret-back">← вернуться</button>
+  </div>
+</div>
+
+<script src="audio.js"></script>
+<script src="script.js"></script>
+</body>
+</html>
