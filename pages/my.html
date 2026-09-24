@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>мы · между строк</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Inter:wght@300;400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../style.css">
+</head>
+<body>
+
+<audio id="bg-music" src="../audio/melody.mp3" loop preload="auto"></audio>
+
+<header class="site-header">
+  <a href="../index.html" class="back">← назад</a>
+  <span class="brand">между строк</span>
+</header>
+
+<main class="page">
+  <h1 class="page-title">если бы ты была…</h1>
+
+  <div class="cards-grid">
+
+    <div class="card-ify reveal">
+      <div class="q">если бы ты была цветом</div>
+      <div class="a">тёмно-серый</div>
+      <div class="t">Потому что ты не из тех цветов, которые нужно заметить издалека. Тебя хочется рассматривать.</div>
+    </div>
+
+    <div class="card-ify reveal">
+      <div class="q">если бы ты была временем</div>
+      <div class="a">00:00</div>
+      <div class="t">Когда вокруг уже становится тихо и почему-то хочется говорить именно с тобой.</div>
+    </div>
+
+    <div class="card-ify reveal" data-lily>
+      <div class="q">если бы ты была цветком</div>
+      <svg class="lily-svg" viewBox="0 0 100 100">
+        <g fill="none" stroke="#c9a961" stroke-width="1.2">
+          <ellipse class="petal" cx="50" cy="40" rx="6" ry="22"/>
+          <ellipse class="petal" cx="50" cy="40" rx="6" ry="22" transform="rotate(60 50 60)"/>
+          <ellipse class="petal" cx="50" cy="40" rx="6" ry="22" transform="rotate(120 50 60)"/>
+          <ellipse class="petal" cx="50" cy="40" rx="6" ry="22" transform="rotate(180 50 60)"/>
+          <ellipse class="petal" cx="50" cy="40" rx="6" ry="22" transform="rotate(240 50 60)"/>
+          <ellipse class="petal" cx="50" cy="40" rx="6" ry="22" transform="rotate(300 50 60)"/>
+        </g>
+        <circle cx="50" cy="60" r="3" fill="#c9a961"/>
+      </svg>
+      <div class="a">лилия</div>
+    </div>
+
+    <div class="card-ify reveal">
+      <div class="q">если бы ты была местом</div>
+      <div class="a">местом, куда хочется возвращаться</div>
+    </div>
+
+    <div class="card-ify reveal">
+      <div class="q">если бы ты была звуком</div>
+      <div class="a">твой сонный голос</div>
+      <div class="t">Не музыка. Просто твой сонный голос.</div>
+    </div>
+
+    <div class="card-ify reveal">
+      <div class="q">если бы ты была временем года</div>
+      <div class="a">поздняя осень</div>
+      <div class="t">Когда хочется, чтобы кто-то был рядом.</div>
+    </div>
+
+  </div>
+
+  <nav class="page-nav">
+    <a href="ty.html">← ты</a>
+    <a href="vospominaniya.html">воспоминания →</a>
+  </nav>
+</main>
+
+<script src="../audio.js"></script>
+<script src="../script.js"></script>
+</body>
+</html>
