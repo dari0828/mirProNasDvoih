@@ -13,6 +13,9 @@
 
 * { margin: 0; padding: 0; box-sizing: border-box; }
 
+/* ВАЖНО: чинит атрибут hidden для элементов с display:flex */
+[hidden] { display: none !important; }
+
 html { scroll-behavior: smooth; }
 
 body {
@@ -26,7 +29,6 @@ body {
   min-height: 100vh;
 }
 
-/* Зернистость-плёнка поверх всего */
 body::after {
   content: "";
   position: fixed;
@@ -53,11 +55,7 @@ button { background: none; border: none; color: inherit; font: inherit; cursor: 
 }
 .gate.fade-out { opacity: 0; pointer-events: none; }
 
-.gate-inner {
-  text-align: center;
-  padding: 2rem;
-  max-width: 640px;
-}
+.gate-inner { text-align: center; padding: 2rem; max-width: 640px; }
 
 .gate-line {
   font-family: var(--serif);
@@ -70,9 +68,7 @@ button { background: none; border: none; color: inherit; font: inherit; cursor: 
   margin-bottom: 1.2rem;
   letter-spacing: 0.02em;
 }
-.gate-line.show {
-  animation: softAppear 2.2s ease forwards;
-}
+.gate-line.show { animation: softAppear 2.2s ease forwards; }
 
 @keyframes softAppear {
   from { opacity: 0; filter: blur(6px); transform: translateY(6px); }
@@ -84,7 +80,6 @@ button { background: none; border: none; color: inherit; font: inherit; cursor: 
   font-family: var(--serif);
   font-size: 1.15rem;
   letter-spacing: 0.4em;
-  text-transform: lowercase;
   color: var(--text);
   opacity: 0;
   padding: 0.6rem 1rem;
@@ -163,12 +158,10 @@ button { background: none; border: none; color: inherit; font: inherit; cursor: 
   height: 1px;
   background: var(--gold);
   transform: scaleX(0);
-  transform-origin: center;
   transition: transform 0.5s ease;
 }
 .home-nav a:hover { color: var(--text); }
 .home-nav a:hover::after { transform: scaleX(1); }
-
 .home-nav .dot { color: rgba(236,230,219,0.25); }
 
 /* ================= ПАСХАЛКИ ================= */
@@ -237,7 +230,7 @@ button { background: none; border: none; color: inherit; font: inherit; cursor: 
 }
 .secret-back:hover { color: var(--text); }
 
-/* ================= ОБЩЕЕ ДЛЯ ВНУТРЕННИХ СТРАНИЦ ================= */
+/* ================= ВНУТРЕННИЕ СТРАНИЦЫ ================= */
 .page {
   min-height: 100vh;
   padding: 8rem 2rem 6rem;
@@ -280,45 +273,499 @@ button { background: none; border: none; color: inherit; font: inherit; cursor: 
   margin-bottom: 4rem;
   letter-spacing: -0.01em;
 }
-.page-title em {
-  font-style: italic;
-  color: var(--gold);
-}
+.page-title em { font-style: italic; color: var(--gold); }
 
-/* Появление блоков при скролле */
 .reveal {
   opacity: 0;
   transform: translateY(30px);
   transition: opacity 1.2s ease, transform 1.2s ease;
 }
-.reveal.visible {
-  opacity: 1;
-  transform: translateY(0);
-}
+.reveal.visible { opacity: 1; transform: translateY(0); }
 
-/* Кнопки навигации внизу страницы */
 .page-nav {
   display: flex;
   justify-content: space-between;
   gap: 1rem;
   max-width: 900px;
   margin: 8rem auto 2rem;
-  padding: 0 1rem;
+  padding: 3rem 1rem 0;
   font-size: 0.82rem;
   letter-spacing: 0.2em;
   text-transform: uppercase;
   color: var(--muted);
   border-top: 1px solid var(--line);
-  padding-top: 3rem;
 }
 .page-nav a { transition: color 0.4s ease; }
 .page-nav a:hover { color: var(--gold); }
 .page-nav .empty { visibility: hidden; }
 
-/* ================= МОБИЛЬНАЯ АДАПТАЦИЯ ================= */
+/* ================= СТРАНИЦА «ТЫ» ================= */
+.words-cloud {
+  position: relative;
+  max-width: 900px;
+  min-height: 60vh;
+  margin: 0 auto;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 2rem 3rem;
+  padding: 2rem;
+}
+
+.word-item {
+  font-family: var(--serif);
+  font-size: clamp(1.4rem, 3vw, 2.2rem);
+  font-style: italic;
+  color: var(--text);
+  padding: 0.4rem 0.6rem;
+  border-bottom: 1px solid transparent;
+  transition: color 0.5s ease, border-color 0.5s ease, transform 0.5s ease;
+  cursor: pointer;
+}
+.word-item:hover {
+  color: var(--gold);
+  border-color: var(--gold);
+  transform: translateY(-3px);
+}
+.word-item:nth-child(1) { transform: rotate(-3deg); }
+.word-item:nth-child(2) { transform: rotate(2deg); }
+.word-item:nth-child(3) { transform: rotate(-1deg); }
+.word-item:nth-child(4) { transform: rotate(3deg); }
+.word-item:nth-child(5) { transform: rotate(-2deg); }
+.word-item:nth-child(6) { transform: rotate(1deg); }
+
+.word-modal {
+  position: fixed;
+  inset: 0;
+  background: rgba(14,13,12,0.96);
+  z-index: 150;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  animation: pageIn 0.9s ease;
+}
+
+.word-modal-inner {
+  max-width: 640px;
+  text-align: center;
+}
+.word-modal-inner h2 {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: clamp(1.6rem, 3vw, 2.2rem);
+  color: var(--gold);
+  margin-bottom: 2rem;
+  font-weight: 400;
+}
+.word-modal-inner p {
+  font-family: var(--serif);
+  font-size: clamp(1.1rem, 2.2vw, 1.35rem);
+  font-style: italic;
+  line-height: 1.85;
+  color: var(--text);
+  margin-bottom: 1rem;
+}
+.word-video,
+.word-image {
+  max-width: 320px;
+  width: 100%;
+  border-radius: 4px;
+  margin: 1.5rem auto;
+  display: block;
+  box-shadow: 0 10px 40px rgba(0,0,0,0.6);
+}
+.word-modal-close {
+  margin-top: 2rem;
+  font-size: 0.78rem;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--muted);
+  transition: color 0.4s ease;
+}
+.word-modal-close:hover { color: var(--gold); }
+
+/* ================= СТРАНИЦА «МЫ» ================= */
+.cards-grid {
+  max-width: 1000px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2rem;
+}
+
+.card-ify {
+  border: 1px solid var(--line);
+  padding: 2.5rem 1.8rem;
+  text-align: center;
+  transition: border-color 0.5s ease, transform 0.5s ease;
+  background: rgba(21,19,15,0.4);
+}
+.card-ify:hover { border-color: rgba(201,169,97,0.4); transform: translateY(-4px); }
+
+.card-ify .q {
+  font-size: 0.72rem;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 1.4rem;
+}
+.card-ify .a {
+  font-family: var(--serif);
+  font-size: clamp(1.5rem, 3vw, 2rem);
+  font-style: italic;
+  color: var(--gold);
+  margin-bottom: 1.4rem;
+  line-height: 1.3;
+}
+.card-ify .t {
+  font-family: var(--serif);
+  font-size: 1.05rem;
+  font-style: italic;
+  color: var(--text);
+  opacity: 0.85;
+  line-height: 1.7;
+}
+
+.lily-svg {
+  width: 100px;
+  height: 100px;
+  margin: 0 auto 1rem;
+  display: block;
+}
+.lily-svg .petal {
+  transform-origin: 50% 90%;
+  transform: scale(0.1);
+  opacity: 0;
+  transition: transform 1.6s ease, opacity 1.6s ease;
+}
+.card-ify.lily-open .petal { transform: scale(1); opacity: 1; }
+.card-ify.lily-open .petal:nth-child(1) { transition-delay: 0s; }
+.card-ify.lily-open .petal:nth-child(2) { transition-delay: 0.15s; }
+.card-ify.lily-open .petal:nth-child(3) { transition-delay: 0.3s; }
+.card-ify.lily-open .petal:nth-child(4) { transition-delay: 0.45s; }
+.card-ify.lily-open .petal:nth-child(5) { transition-delay: 0.6s; }
+.card-ify.lily-open .petal:nth-child(6) { transition-delay: 0.75s; }
+
+/* ================= СТРАНИЦА «ВОСПОМИНАНИЯ» ================= */
+.section-block {
+  max-width: 900px;
+  margin: 0 auto 8rem;
+  padding: 0 1rem;
+}
+.section-heading {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: clamp(1.6rem, 3vw, 2.2rem);
+  color: var(--gold);
+  text-align: center;
+  margin-bottom: 3rem;
+  font-weight: 400;
+}
+
+.polaroids {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 3rem 2rem;
+}
+
+.polaroid {
+  width: 240px;
+  height: 300px;
+  perspective: 1200px;
+  cursor: pointer;
+}
+.polaroid-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transition: transform 1s cubic-bezier(.4,.2,.2,1);
+  transform-style: preserve-3d;
+}
+.polaroid.flipped .polaroid-inner { transform: rotateY(180deg); }
+
+.polaroid-face {
+  position: absolute;
+  inset: 0;
+  backface-visibility: hidden;
+  background: #efe9dd;
+  color: #1c1a17;
+  padding: 1.4rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  box-shadow: 0 12px 40px rgba(0,0,0,0.5);
+  font-family: var(--serif);
+}
+.polaroid-front .date {
+  font-size: 0.85rem;
+  letter-spacing: 0.2em;
+  color: #6b6258;
+}
+.polaroid-front .hint {
+  font-style: italic;
+  font-size: 1.3rem;
+  text-align: center;
+  color: #3a352d;
+}
+.polaroid-back { transform: rotateY(180deg); }
+.polaroid-back p {
+  font-style: italic;
+  font-size: 1.05rem;
+  line-height: 1.6;
+  color: #2b2721;
+  margin: auto 0;
+}
+
+.polaroid:nth-child(1) { transform: rotate(-4deg); }
+.polaroid:nth-child(2) { transform: rotate(3deg); }
+.polaroid:nth-child(3) { transform: rotate(-2deg); }
+.polaroid:nth-child(4) { transform: rotate(4deg); }
+
+.unspeakable {
+  text-align: center;
+  font-family: var(--serif);
+  font-size: clamp(1.1rem, 2.2vw, 1.5rem);
+  font-style: italic;
+  line-height: 2;
+  color: var(--text);
+  max-width: 600px;
+  margin: 0 auto;
+}
+.unspeakable p { opacity: 0; transition: opacity 2s ease; margin-bottom: 1rem; }
+.unspeakable p.show { opacity: 1; }
+.unspeakable .loud {
+  font-size: clamp(1.4rem, 3vw, 2rem);
+  color: var(--gold);
+  margin: 2.5rem 0;
+}
+
+.scattered-words {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1.4rem 2.2rem;
+  margin-top: 4rem;
+  max-width: 700px;
+  margin-left: auto;
+  margin-right: auto;
+}
+.scattered-words span {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 1.1rem;
+  color: var(--muted);
+  opacity: 0;
+  transition: opacity 1.5s ease;
+}
+.scattered-words span.show { opacity: 1; }
+.scattered-words span:nth-child(odd) { transform: rotate(-3deg); }
+.scattered-words span:nth-child(even) { transform: rotate(2deg); }
+
+.whispers {
+  text-align: center;
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: clamp(1.1rem, 2.4vw, 1.5rem);
+  line-height: 2.4;
+  color: var(--text);
+}
+.whispers p {
+  opacity: 0;
+  transition: opacity 1.8s ease, filter 1.8s ease;
+  filter: blur(3px);
+  margin-bottom: 0.4rem;
+}
+.whispers p.show { opacity: 1; filter: blur(0); }
+.whispers .final {
+  margin-top: 3rem;
+  font-size: clamp(0.95rem, 1.8vw, 1.15rem);
+  color: var(--muted);
+}
+
+.museum {
+  max-width: 620px;
+  margin: 0 auto;
+  border: 1px solid rgba(201,169,97,0.35);
+  padding: 4rem 2rem;
+  text-align: center;
+  background: rgba(21,19,15,0.5);
+}
+.museum .phrase {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: clamp(1.2rem, 2.4vw, 1.6rem);
+  line-height: 1.7;
+  color: var(--text);
+  margin-bottom: 2rem;
+}
+.museum .meta {
+  font-size: 0.72rem;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.envelope-wrap {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 3rem;
+}
+.envelope {
+  width: 280px;
+  height: 180px;
+  position: relative;
+  cursor: pointer;
+  transition: transform 0.8s ease;
+}
+.envelope:hover { transform: translateY(-4px); }
+
+.env-body {
+  position: absolute;
+  inset: 0;
+  background: #efe9dd;
+  border-radius: 2px;
+  box-shadow: 0 15px 40px rgba(0,0,0,0.5);
+}
+.env-flap {
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 0;
+  border-left: 140px solid transparent;
+  border-right: 140px solid transparent;
+  border-top: 90px solid #d8cdb8;
+  transform-origin: top;
+  transition: transform 1s ease;
+  z-index: 2;
+}
+.envelope.open .env-flap { transform: rotateX(180deg); }
+
+.env-label {
+  position: absolute;
+  bottom: 18px;
+  left: 0; right: 0;
+  text-align: center;
+  font-size: 0.68rem;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: #6b6258;
+  font-family: var(--sans);
+  z-index: 3;
+}
+
+.letter-content {
+  max-width: 620px;
+  margin: 0 auto;
+  padding: 0 2.5rem;
+  background: rgba(21,19,15,0.6);
+  border-left: 2px solid var(--gold);
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: clamp(1rem, 2vw, 1.2rem);
+  line-height: 1.9;
+  color: var(--text);
+  opacity: 0;
+  max-height: 0;
+  overflow: hidden;
+  transition: opacity 1.4s ease, max-height 1.4s ease, padding 1.4s ease;
+}
+.letter-content.show {
+  opacity: 1;
+  max-height: 1200px;
+  padding-top: 2.5rem;
+  padding-bottom: 2.5rem;
+}
+.letter-content p { margin-bottom: 1.2rem; }
+.letter-content .stamp {
+  margin-top: 2rem;
+  text-align: right;
+  font-size: 0.85rem;
+  letter-spacing: 0.15em;
+  color: var(--muted);
+}
+
+/* ================= СТРАНИЦА «ПИСЬМО» ================= */
+.unsaid {
+  max-width: 640px;
+  margin: 0 auto 6rem;
+  text-align: center;
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: clamp(1.1rem, 2.4vw, 1.5rem);
+  line-height: 2.2;
+}
+.unsaid p {
+  opacity: 0;
+  filter: blur(3px);
+  transition: opacity 2s ease, filter 2s ease;
+  margin-bottom: 0.6rem;
+}
+.unsaid p.show { opacity: 1; filter: blur(0); }
+.unsaid .lead { color: var(--muted); margin-bottom: 1.6rem; }
+
+.final-letter {
+  max-width: 660px;
+  margin: 0 auto;
+  font-family: var(--serif);
+  font-size: clamp(1.05rem, 2vw, 1.25rem);
+  line-height: 1.9;
+  color: var(--text);
+  text-align: left;
+}
+.final-letter p { margin-bottom: 1.6rem; opacity: 0; transition: opacity 1.8s ease; }
+.final-letter p.show { opacity: 1; }
+.final-letter .sign { text-align: right; margin-top: 2rem; font-style: italic; }
+.final-letter .heart {
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  vertical-align: middle;
+  margin-left: 4px;
+  fill: var(--burgundy);
+}
+
+.the-end {
+  text-align: center;
+  margin-top: 6rem;
+  font-size: 0.72rem;
+  letter-spacing: 0.4em;
+  text-transform: uppercase;
+  color: var(--muted);
+  opacity: 0.7;
+}
+
+.petals {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 5;
+  overflow: hidden;
+}
+.petal {
+  position: absolute;
+  top: -30px;
+  width: 8px;
+  height: 8px;
+  background: #ece6db;
+  border-radius: 50% 0 50% 0;
+  opacity: 0.35;
+  animation: fall linear infinite;
+}
+
+@keyframes fall {
+  0% { transform: translateY(0) rotate(0deg); opacity: 0; }
+  10% { opacity: 0.5; }
+  90% { opacity: 0.3; }
+  100% { transform: translateY(110vh) rotate(360deg); opacity: 0; }
+}
+
+/* ================= МОБИЛЬНАЯ ================= */
 @media (max-width: 640px) {
   .page { padding: 6rem 1.2rem 4rem; }
   .site-header { padding: 1.2rem 1.2rem; }
   .home-nav { font-size: 0.85rem; gap: 0.6rem; }
   .page-nav { font-size: 0.7rem; }
+  .polaroid { width: 200px; height: 260px; }
 }
