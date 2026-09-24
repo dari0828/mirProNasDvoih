@@ -440,7 +440,7 @@ button { background: none; border: none; color: inherit; font: inherit; cursor: 
   width: 160px;
   height: 160px;
   margin: 0.5rem auto 1.5rem;
-  background-image: url("images/lily.png");
+  background-image: url("images/lily.jpg");
   background-size: contain;
   background-position: center;
   background-repeat: no-repeat;
