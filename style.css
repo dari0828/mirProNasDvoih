@@ -435,22 +435,19 @@ button { background: none; border: none; color: inherit; font: inherit; cursor: 
 
 
 /* ================= ЛИЛИЯ ================= */
-.lily {
+.lily-img {
   display: block;
   width: 160px;
   height: 160px;
   margin: 0.5rem auto 1.5rem;
-  background-image: url("images/lily.jpg");
-  background-size: contain;
-  background-position: center;
-  background-repeat: no-repeat;
-  transform: scale(0.1) rotate(-10deg);
+  object-fit: contain;
   opacity: 0;
-  transition: transform 2.2s cubic-bezier(.34,.1,.2,1), opacity 1.6s ease;
+  transform: scale(0.6);
+  transition: opacity 1.6s ease, transform 2s cubic-bezier(.34,.1,.2,1);
 }
-.card-ify.lily-open .lily {
-  transform: scale(1) rotate(0deg);
+.reveal.visible .lily-img {
   opacity: 1;
+  transform: scale(1);
 }
 
 /* ================= СТРАНИЦА «ВОСПОМИНАНИЯ» ================= */
