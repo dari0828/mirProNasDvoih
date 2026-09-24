@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ты · между строк</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Inter:wght@300;400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../style.css">
+</head>
+<body>
+
+<audio id="bg-music" src="../audio/melody.mp3" loop preload="auto"></audio>
+
+<header class="site-header">
+  <a href="../index.html" class="back">← назад</a>
+  <span class="brand">между строк</span>
+</header>
+
+<main class="page">
+  <h1 class="page-title">ты</h1>
+
+  <div class="words-cloud reveal">
+    <span class="word-item" data-key="vrednaya">вредная</span>
+    <span class="word-item" data-key="nezhnaya">нежная</span>
+    <span class="word-item" data-key="smeshnaya">смешная</span>
+    <span class="word-item" data-key="kapriznaya">капризная</span>
+    <span class="word-item" data-key="krasivaya">красивая</span>
+    <span class="word-item" data-key="lyubimaya">моя любимая</span>
+  </div>
+
+  <nav class="page-nav">
+    <a href="../index.html">← главная</a>
+    <a href="my.html">мы →</a>
+  </nav>
+</main>
+
+<div class="word-modal" id="word-modal" hidden>
+  <div class="word-modal-inner">
+    <h2></h2>
+    <div class="word-modal-content"></div>
+    <button class="word-modal-close" id="word-modal-close">закрыть ✕</button>
+  </div>
+</div>
+
+<template id="tpl-vrednaya">
+  <p>Ты прекрасно знаешь, как меня подразнить.</p>
+  <p>И, кажется, тебе это нравится.</p>
+</template>
+
+<template id="tpl-nezhnaya">
+  <p>Ты умеешь быть нежной так, что это чувствуется даже в коротком «привет».</p>
+  <p>И я это храню.</p>
+</template>
+
+<template id="tpl-smeshnaya">
+  <p>С тобой я смеюсь так, как не смеюсь больше ни с кем.</p>
+  <p>И это — лучшее.</p>
+</template>
+
+<template id="tpl-kapriznaya">
+  <video src="../videos/kotyonok.mp4" autoplay muted loop playsinline class="word-video"></video>
+  <p>И всё равно самая любимая.</p>
+</template>
+
+<template id="tpl-krasivaya">
+  <p>Ты красивая так, что иногда я просто молчу.</p>
+  <p>Потому что словами это не передать.</p>
+</template>
+
+<template id="tpl-lyubimaya">
+  <p>Моя любимая. Самая.</p>
+  <p>Даже когда далеко. Даже когда молчишь.</p>
+</template>
+
+<button class="easter egg-1" id="egg-diamond" aria-label="secret">♢</button>
+
+<div class="secret-overlay" id="secret-diamond" hidden>
+  <div class="secret-inner">
+    <p>О, ты нашла ещё одну.</p>
+    <p class="secret-big">тот самый непослушный рыжий котёнок</p>
+    <p>да, это ты. и я всё равно тебя люблю.</p>
+    <button class="secret-back" id="secret-diamond-close">← вернуться</button>
+  </div>
+</div>
+
+<script src="../audio.js"></script>
+<script src="../script.js"></script>
+</body>
+</html>
