@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>письмо · между строк</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Inter:wght@300;400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../style.css">
+</head>
+<body>
+
+<div class="petals"></div>
+
+<audio id="bg-music" src="../audio/melody.mp3" loop preload="auto"></audio>
+
+<header class="site-header">
+  <a href="../index.html" class="back">← назад</a>
+  <span class="brand">между строк</span>
+</header>
+
+<main class="page">
+
+  <div class="unsaid">
+    <p class="lead">я не сказала тебе…</p>
+    <p>что боюсь тебя потерять</p>
+    <p>что думаю о тебе чаще, чем стоит</p>
+    <p>что ты — самое странное и лучшее, что со мной случилось</p>
+  </div>
+
+  <h2 class="section-heading reveal" style="margin-top: 6rem;">И последнее.</h2>
+
+  <div class="final-letter">
+    <p>Очень много вещей, о которых мне хочется сказать. Я хочу, чтобы весь мир знал, как сильно я тебя люблю и на что я готова ради тебя. Но весь мой мир сузился и оказался в одном человеке — и это ты, любовь моя.</p>
+    <p>Я не умею говорить о своих чувствах. Но если бы ты могла заглянуть и почувствовать то, что я чувствую рядом с тобой, и насколько сильно ты мне важна и нужна — у тебя бы не осталось больше сомнений в моей любви к тебе, моя истеричка.
+      <svg class="heart" viewBox="0 0 24 24"><path d="M12 21s-7-4.35-9.5-8.5C.6 9.5 2.5 5 6.5 5c2 0 3.5 1 5.5 3 2-2 3.5-3 5.5-3 4 0 5.9 4.5 4 7.5C19 16.65 12 21 12 21z"/></svg>
+    </p>
+    <p class="sign">Спасибо, что однажды появилась в моей жизни.<br>Я тебя люблю.</p>
+  </div>
+
+  <div class="the-end">конец</div>
+
+  <nav class="page-nav">
+    <a href="vospominaniya.html">← воспоминания</a>
+    <a href="../index.html">на главную</a>
+  </nav>
+</main>
+
+<button class="easter egg-1" id="egg-moon" aria-label="secret">🌙</button>
+
+<div class="secret-overlay" id="secret-moon" hidden>
+  <div class="secret-inner">
+    <p>Ты нашла всё.</p>
+    <p class="secret-big">Теперь обними меня.</p>
+    <button class="secret-back" id="secret-moon-close">← вернуться</button>
+  </div>
+</div>
+
+<script src="../audio.js"></script>
+<script src="../script.js"></script>
+</body>
+</html>
